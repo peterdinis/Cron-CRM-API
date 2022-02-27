@@ -24,12 +24,12 @@ model User {
 model Task {
   id Int @id @default(autoincrement())
   name String
-  status Boolean
+  status String
   author String
 }
 
 model Note {
-  int Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
   name String
   author String
 }
