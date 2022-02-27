@@ -21,13 +21,15 @@ model User {
   @@map("users")
 }
 
-
-model Document {
-
-}
-
 model Task {
-
+  id Int @id @default(autoincrement())
+  name String
+  status Boolean
+  author String
 }
 
-model Note {}
+model Note {
+  int Int @id @default(autoincrement())
+  name String
+  author String
+}
