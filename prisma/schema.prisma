@@ -33,3 +33,11 @@ model Note {
   name String
   author String
 }
+
+model Message {
+  id Int @id @default(autoincrement())
+  name String
+  status String
+  author String
+  description String
+}
