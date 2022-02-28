@@ -5,7 +5,7 @@ export class NoteDto {
     name: string;
 
     @IsNotEmpty()
-    status: boolean;
+    status: string;
 
     @IsNotEmpty()
     author: string;
