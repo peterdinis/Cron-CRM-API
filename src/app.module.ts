@@ -4,10 +4,18 @@ import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { TaskModule } from './tasks/task.module';
 import { NoteModule } from './notes/note.module';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [NoteModule, TaskModule, AuthModule, PrismaModule, ConfigModule.forRoot({
-    isGlobal: true
-  })]
+  imports: [
+    UserModule,
+    NoteModule,
+    TaskModule,
+    AuthModule,
+    PrismaModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+  ],
 })
 export class AppModule {}
