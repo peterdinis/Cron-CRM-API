@@ -10,7 +10,7 @@ export class NoteController {
         return this.noteService.getNotes();
     }
 
-    @Get("notes/:id")
+    @Get("note/:id")
     getNote(@Param("id") id: any) {
         return this.noteService.getNote(id);
     } 

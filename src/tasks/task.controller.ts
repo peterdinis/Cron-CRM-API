@@ -10,7 +10,7 @@ export class TaskController {
         return this.taskService.getTasks();
     }
 
-    @Get("tasks/:id")
+    @Get("task/:id")
     getTask(@Param("id") id: any) {
         return this.taskService.getTask(id);
     }
