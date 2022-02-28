@@ -1,10 +1,14 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get } from '@nestjs/common';
+import { GetUser } from './user.decorator';
+import { User } from '@prisma/client';
+import { UserService } from './user.service';
 
-@Controller("users")
+@Controller('users')
 export class UserController {
-    @Get("/profile")
-    userProfile() {
-        
-    }
+  constructor(private userService: UserService) {}
 
+  @Get('/profile')
+  userProfile(@GetUser() user: User) {
+    return user;
+  }
 }
