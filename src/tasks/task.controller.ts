@@ -2,7 +2,6 @@ import { TaskService } from "./task.service";
 import { Body, Controller, Post,  Get, Param, Put, Delete } from "@nestjs/common";
 import { TaskDto } from "./task.dto";
 import {
-    ApiBearerAuth,
     ApiOperation,
     ApiResponse,
     ApiTags,
@@ -14,6 +13,7 @@ export class TaskController {
     constructor(private taskService: TaskService) {}
     
     @ApiOperation({ summary: 'Get all tasks' })
+    @ApiResponse({status: 200})
     @Get("tasks")
     getTasks() {
         return this.taskService.getTasks();
@@ -21,12 +21,14 @@ export class TaskController {
 
     @ApiOperation({ summary: 'Get one task' })
     @Get("task/:id")
+    @ApiResponse({status: 200})
     getTask(@Param("id") id: any) {
         return this.taskService.getTask(id);
     }
 
     @ApiOperation({ summary: 'Create new task' })
     @Post("tasks")
+    @ApiResponse({status: 201})
     createTask(@Body() data: {name: string, status: string, author: string}) {
         const {name, status, author} = data;
         return this.taskService.createTask({
@@ -36,12 +38,15 @@ export class TaskController {
         });
     }
 
-    @ApiOperation({ summary: 'Update tasks' })
+    @ApiOperation({ summary: 'Update task' })
+    @ApiResponse({status: 200})
     @Put("task/:id")
     updateTask(@Param("id") id: any, @Body() data: TaskDto) {
         return this.taskService.updateTask(id, data);
     }
 
+    @ApiOperation({ summary: 'Delete task' })
+    @ApiResponse({status: 204})
     @Delete("task/:id")
     deleteTask(@Param("id") id: any) {
         return this.taskService.removeTask(id);
