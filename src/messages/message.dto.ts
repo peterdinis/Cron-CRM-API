@@ -1,6 +1,15 @@
+import { IsNotEmpty } from "class-validator";
+
 export class MessageDto {
+    @IsNotEmpty()
     name: string;
-    description: string;
-    author: string;
+
+    @IsNotEmpty()
     status: string;
+
+    @IsNotEmpty()
+    description: string;
+
+    @IsNotEmpty()
+    author: string;
 }

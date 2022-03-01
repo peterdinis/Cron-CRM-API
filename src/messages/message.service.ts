@@ -5,4 +5,8 @@ import {PrismaService} from "../prisma/prisma.service";
 @Injectable()
 export class MessageService {
     constructor(private prisma: PrismaService) {}
+
+    async getAllMessages() {
+        return this.prisma.message.findMany({});
+    }
 }

@@ -30,4 +30,12 @@ export class TaskService {
             data
         })
     }
+
+    async removeTask(id: any) {
+        return this.prisma.task.delete({
+            where: {
+                id
+            }
+        })
+    }
 }
