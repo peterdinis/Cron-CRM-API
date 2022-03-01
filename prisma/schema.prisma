@@ -11,33 +11,31 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email String @unique
-  hash  String
-  firstName String?
-  lastName  String?
-  @@map("users")
+  bio      String?
+  email    String  @unique
+  id       Int     @id @default(autoincrement())
+  image    String?
+  password String?
+  username String? @unique
 }
 
 model Task {
-  id Int @id @default(autoincrement())
-  name String
+  id     Int    @id @default(autoincrement())
+  name   String
   status String
   author String
 }
 
 model Note {
-  id Int @id @default(autoincrement())
-  name String
+  id     Int    @id @default(autoincrement())
+  name   String
   author String
 }
 
 model Message {
-  id Int @id @default(autoincrement())
-  name String
-  status String
-  author String
+  id          Int    @id @default(autoincrement())
+  name        String
+  status      String
+  author      String
   description String
 }
