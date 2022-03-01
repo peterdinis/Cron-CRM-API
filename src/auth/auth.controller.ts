@@ -3,7 +3,6 @@ import { AuthService } from './auth.service';
 import { UserRO } from './user.interface';
 import { CreateUserDto, UpdateUserDto, LoginUserDto } from './dto';
 import {User} from "./auth.decorator";
-import {ValidationPipe} from "../shared/validation.pipe";
 import {
     ApiBearerAuth, ApiTags
   } from '@nestjs/swagger';
@@ -27,20 +26,24 @@ export class AuthController {
     return await this.userService.update(userId, userData);
   }
 
-  @UsePipes(new ValidationPipe())
-  @Post('users')
-  async create(@Body('user') userData: CreateUserDto) {
-    return this.userService.create(userData);
+  // @UsePipes(new ValidationPipe())
+  @Post('user/register')
+  async create(@Body() data: {email: string, password: string, username: string}) {
+      const {email, password, username} = data;
+      return this.userService.create({
+        email,
+        password,
+        username
+      });
   }
 
   @Delete('user/:slug')
   async delete(@Param() params) {
-    console.log(params);
     return await this.userService.delete(params.slug);
   }
 
-  @UsePipes(new ValidationPipe())
-  @Post('users/login')
+ //  @UsePipes(new ValidationPipe())
+  @Post('user/login')
   async login(@Body('user') loginUserDto: LoginUserDto): Promise<UserRO> {
     return await this.userService.login(loginUserDto);
   }

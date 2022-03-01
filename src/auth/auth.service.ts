@@ -5,13 +5,14 @@ import * as argon2 from 'argon2';
 import * as jwt from "jsonwebtoken";
 import { UserRO } from "./user.interface";
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
-import { HttpStatus } from '@nestjs/common';
 
 const select = {
   email: true,
-  username: true
+  username: true,
+  bio: true,
+  image: true,
+  password: true
 };
-
 
 @Injectable()
 export class AuthService {
@@ -60,29 +61,10 @@ export class AuthService {
     };
   }
 
-  async create(dto: CreateUserDto): Promise<UserRO> {
-    const {username, email, password} = dto;
-
-    // check uniqueness of username/email
-    const userNotUnique = await this.prisma.user.findUnique({
-      where: {email}
-    });
-
-    if (userNotUnique) {
-      const errors = {username: 'Username and email must be unique.'};
-      throw new HttpException({message: 'Input data validation failed', errors}, HttpStatus.BAD_REQUEST);
-    }
-
-    const hashedPassword = await argon2.hash(password);
-
-    const data = {
-      username,
-      email,
-      password: hashedPassword,
-    };
-    const user = await this.prisma.user.create({ data, select });
-
-    return {user};
+  async create(data: CreateUserDto) {
+      return this.prisma.user.create({
+        data
+      });
   }
 
   async update(id: number, data: UpdateUserDto): Promise<any> {
