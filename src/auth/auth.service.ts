@@ -93,22 +93,5 @@ export class AuthService {
     };
   }
 
-  // async validateUser(dto: AuthDto) {
-  //   let email = dto.email;
-  //   let password = dto.password;
-  //   const user = await this.userService.findOne({email});
-
-  //   if(password == null) {
-  //     return null;
-  //   }
-
-  //   const isPasswordMatch = await argon.verify(password, dto.password);
-  //   if(isPasswordMatch) {
-  //     return {
-  //       username: email
-  //     }
-  //   }
-
-  //   return null;
-  // }
+ 
 }
