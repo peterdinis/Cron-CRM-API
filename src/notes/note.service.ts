@@ -21,4 +21,21 @@ export class NoteService {
             data
         });  
     }
+
+    async updateNote(id: any, data: NoteDto) {
+        return this.prisma.note.update({
+            where: {
+                id
+            },
+            data
+        });
+    }
+
+    async removeNote(id: any) {
+        return this.prisma.note.delete({
+            where: {
+                id
+            }
+        })
+    }
 }

@@ -10,3 +10,9 @@ export class NoteDto {
     @IsNotEmpty()
     author: string;
 }
+
+
+export class StatusNoteDto {
+    @IsNotEmpty()
+    status: string;
+}

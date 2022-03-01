@@ -21,4 +21,13 @@ export class TaskService {
             data
         });
     }
+
+    async updateTask(id: any, data: TaskDto) {
+        return this.prisma.task.update({
+            where: {
+                id
+            },
+            data
+        })
+    }
 }

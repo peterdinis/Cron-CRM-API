@@ -1,5 +1,7 @@
 import { NoteService } from "./note.service";
-import {Body, Controller, Post, Get, Param} from "@nestjs/common";
+import {Body, Controller, Post, Get, Param, Put, Delete} from "@nestjs/common";
+import { NoteDto } from "./note.dto";
+
 
 @Controller()
 export class NoteController {
@@ -23,5 +25,15 @@ export class NoteController {
             status,
             author
         });
+    }
+
+    @Put("note/:id")
+    updateNote(@Param("id") id: any, @Body() data: NoteDto) {
+        return this.noteService.updateNote(id, data);
+    }
+
+    @Delete("note/:id")
+    deleteNote(@Param("id") id: any) {
+        return this.noteService.removeNote(id);
     }
 }
