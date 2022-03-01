@@ -9,4 +9,16 @@ export class MessageService {
     async getAllMessages() {
         return this.prisma.message.findMany({});
     }
+
+    async getMessage(id: any) {
+        return this.prisma.message.findUnique({
+            where: id
+        })
+    }
+
+    async createMessage(data: MessageDto) {
+        return this.prisma.message.create({
+            data
+        })
+    }
 }
