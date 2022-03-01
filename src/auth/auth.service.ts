@@ -12,7 +12,7 @@ export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwt: JwtService,
-    private config: ConfigService,
+    private config: ConfigService
   ) {}
 
   async signup(dto: AuthDto) {
@@ -92,4 +92,23 @@ export class AuthService {
       access_token: token,
     };
   }
+
+  // async validateUser(dto: AuthDto) {
+  //   let email = dto.email;
+  //   let password = dto.password;
+  //   const user = await this.userService.findOne({email});
+
+  //   if(password == null) {
+  //     return null;
+  //   }
+
+  //   const isPasswordMatch = await argon.verify(password, dto.password);
+  //   if(isPasswordMatch) {
+  //     return {
+  //       username: email
+  //     }
+  //   }
+
+  //   return null;
+  // }
 }
