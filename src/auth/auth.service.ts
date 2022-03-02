@@ -3,15 +3,15 @@ import {PrismaService} from "../prisma/prisma.service";
 import { CreateUserDto, LoginUserDto, UpdateUserDto } from "./dto"
 import * as argon2 from 'argon2';
 import * as jwt from "jsonwebtoken";
-import { UserRO } from "./user.interface";
+import { UserData, UserRO } from "./user.interface";
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
+import { HttpStatus } from '@nestjs/common';
 
 const select = {
   email: true,
   username: true,
   bio: true,
-  image: true,
-  password: true
+  image: true
 };
 
 @Injectable()
@@ -61,10 +61,10 @@ export class AuthService {
     };
   }
 
-  async create(data: CreateUserDto) {
-      return this.prisma.user.create({
-        data
-      });
+  async create(data: CreateUserDto){
+    return this.prisma.user.create({
+      data
+    })
   }
 
   async update(id: number, data: UpdateUserDto): Promise<any> {
