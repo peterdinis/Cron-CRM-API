@@ -8,6 +8,9 @@ import {
     @IsEmail()
     @IsNotEmpty()
     email: string;
+
+    @IsNotEmpty()
+    name: string;
   
     @IsString()
     @IsNotEmpty()
