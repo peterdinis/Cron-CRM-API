@@ -79,6 +79,8 @@ export class AuthService {
       where: {
         email
       }
-    })
+    });
+
+    return user;
   }
 }
