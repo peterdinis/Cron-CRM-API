@@ -21,4 +21,21 @@ export class MessageService {
             data
         })
     }
+
+    async updateMessage(id: any, data: MessageDto) {
+        return this.prisma.note.update({
+            where: {
+                id
+            },
+            data
+        });
+    }
+
+    async removeMessage(id: any) {
+        return this.prisma.note.delete({
+            where: {
+                id
+            }
+        })
+    }
 }

@@ -25,7 +25,7 @@ export class AuthService {
 
     return jwt.sign({
       id: user.id,
-      username: user.username,
+      username: user.name,
       email: user.email,
       exp: exp.getTime() / 1000,
     }, "SOME SECRET");
@@ -36,6 +36,7 @@ export class AuthService {
 
     const data: any = {
       email: dto.email,
+      name: dto.name,
       password: hashedPassword,
     }
     const user = await this.prisma.user.create({ data});
@@ -69,5 +70,15 @@ export class AuthService {
     };
   }
 
-  
+  async findAll() {
+    return await this.prisma.user.findMany({});
+  }
+
+  async findByEmail(email: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email
+      }
+    })
+  }
 }

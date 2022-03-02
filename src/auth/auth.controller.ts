@@ -4,10 +4,11 @@ import {
     HttpCode,
     HttpStatus,
     Post,
-    Req,
+    Get
   } from '@nestjs/common';
   import { AuthService } from './auth.service';
   import { AuthDto } from './dto';
+  import { User } from './auth.decorator';
 
   @Controller('auth')
   export class AuthController {
@@ -22,5 +23,10 @@ import {
     @Post('signin')
     signin(@Body() dto: AuthDto) {
       return this.authService.signin(dto);
+    }
+
+    @Get("user")
+    async findMe(@User("email") email: string) {
+      return this.authService.findByEmail(email);
     }
   }
