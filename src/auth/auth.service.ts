@@ -83,4 +83,14 @@ export class AuthService {
 
     return user;
   }
+
+  async findById(id: number) {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        id
+      }
+    });
+
+    return user;
+  }
 }
